@@ -1,0 +1,55 @@
+﻿@model Core.Entities.Registration
+
+@{
+    ViewData["Title"] = "Edit";
+}
+    <div style="margin:160px; padding:120px;font-family:Cairo">
+        <h1 style="font-family:Cairo">تـعـديـل بيـانـات الـعـملاء</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="User_No" />
+                    <div class="form-group">
+                        <label>أسـم العـميل</label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>كـلـمة الـسـر</label>
+                        <input asp-for="Pwd" class="form-control" />
+                        <span asp-validation-for="Pwd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>رقـم الـموبـيـل</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>الـعـنـوان</label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>الـتـاريـخ</label>
+                        <input asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="حـفـظ" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index"class="btn btn-outline-dark">الـرجـوع للـقـائـمة الـسـابـقة</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </div>
+       

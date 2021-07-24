@@ -1,0 +1,60 @@
+﻿@model CategoryViewModels
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div style="margin:160px; padding:120px;font-family:Cairo">
+    <h1 style="font-family:Cairo">الأقــسـام</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                @if (ViewBag.Message != null)
+                {
+                    <h5 class="alert alert-danger">@ViewBag.Message</h5>
+                }
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label>الـقـسم</label>
+                    <input asp-for="Cat" class="form-control" />
+                    <span asp-validation-for="Cat" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label>الـصـورة</label>
+                    <input type="file" asp-for="File" class="form-control" id="fileName" accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
+
+                    <span asp-validation-for="File" class="text-danger"></span>
+                    <input type="hidden" asp-for="ImageUrl" class="form-control" />
+                </div>*@
+
+                <div class="form-group">
+                    <input type="submit" value="حــفـظ" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-dark">الـرجــوع للـقـائـمة الـسـابـقـة</a>
+    </div>
+
+
+</div>
+@section Scripts {
+    <partial name="_Validatoin" />
+}
+@*  This Scrpit  Upload Only Image  *@
+<script type="text/javascript">
+    function validateFileType() {
+        var fileName = document.getElementById("fileName").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+
+        } else {
+            alert("أخــتــار صــورة");
+            document.getElementById("fileName").value = null;
+        }
+    }
+
+</script>

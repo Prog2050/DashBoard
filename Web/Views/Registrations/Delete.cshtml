@@ -1,0 +1,54 @@
+﻿@model Core.Entities.Registration
+
+@{
+    ViewData["Title"] = "Delete";
+}
+    <div style="margin:160px; padding:120px; font-family:Cairo">
+        <h1 style="font-family:Cairo">حــذف</h1>
+
+        <h3  style="font-family:Cairo">هـل انت مـتأكد من حـذف العـميل</h3>
+        <div>
+
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayFor(model => model.UserName)
+                </dt>
+                <dd class="col-sm-10">
+                    : أسـم الـعـمـيل
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayFor(model => model.Pwd)
+                </dt>
+                <dd class="col-sm-10">
+                    : كـلـمة الـسـر
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayFor(model => model.Phone)
+                </dt>
+                <dd class="col-sm-10">
+                    :   رقـم الـمـوبـيـل
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    :  الـعـنـوان
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayFor(model => model.Date)
+                </dt>
+                <dd class="col-sm-10">
+                    :  الـتــاريــخ
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="User_No" />
+                <input type="submit" value="حــذف" class="btn btn-danger" /> |
+                <a asp-action="Index"class="btn btn-outline-dark">الـرجـوع للـقـائـمة الـسـابـقـة</a>
+            </form>
+        </div>
+
+    </div>
+      

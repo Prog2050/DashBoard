@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Core.Entities.Registration>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<body>
+    <div style="margin:25px; padding:120px;text-align:center;align-content:center;font-family:Cairo">
+
+
+        <form class="box" asp-action="Search" asp-controller="Registrations" method="get" style="margin-top:10px">
+            <row>
+                <div class="btn-group">
+                    <button style="margin-right:5px;width:150px" class="btn btn-outline-success" type="submit">بـحــث</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="مـا الـذي تـبـحـث عـنـه" name="term" dir="rtl" style="text-align:center">
+
+                </div>
+            </row>
+        </form>
+
+
+        <div class="card mt-5">
+
+            <div class="card-header">
+
+
+                <div class="col">
+
+                    <h4 style="text-align: center; align-content: center;font-family:Cairo">
+                        الـعـملاء
+                    </h4>
+                </div>
+            </div>
+
+
+
+
+            <table class="table table-bordered table-Secondary table-hover">
+                <tr>
+                    <td>
+                        تـاريـخ التسجيل
+                    </td>
+                    <td>
+                        العنوان
+                    </td>
+                    <td>
+                        الـموبيل
+                    </td>
+                    <td>
+                        المـسـتـخدم
+                    </td>
+                </tr>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <hr />
+
+
+
+    </div>
+</body>
+

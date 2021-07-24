@@ -1,0 +1,49 @@
+﻿@model OffersViewModels
+@{
+    ViewData["Title"] = "Edit";
+}
+<div style="margin:160px; padding:120px" ;>
+
+    <h1 style="font-family:Cairo">تعديل</h1>
+    <hr />
+    <div>
+        <div class="col-md-4" style="font-family: Cairo  ">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Offers_No" />
+                <div class="form-group">
+                    <label>العرض</label>
+                    <input asp-for="Offer" class="form-control" />
+                    <span asp-validation-for="Offer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>الصورة</label>
+                    <input asp-for="File" type="file" class="form-control" id="fileName" accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    <input type="hidden" asp-for="ImageUrl" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="حــفـظ" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div style="font-family:Cairo">
+        <a asp-action="Index" class="btn btn-outline-dark">الرجوع للقائمة السابقة</a>
+    </div>
+</div>
+<script type="text/javascript">
+    function validateFileType() {
+        var fileName = document.getElementById("fileName").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+
+        } else {
+            alert("أخــتــار صــورة");
+            document.getElementById("fileName").value = null;
+        }
+    }
+
+</script>

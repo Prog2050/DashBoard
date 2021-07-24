@@ -1,0 +1,168 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @*<meta name="viewport" content="width=device-width" />*@
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>OPTIMO DASHBOARD</title>
+
+    <!-- Custom fonts for this theme -->
+    <link href="~/fonts/css/all.min.css" rel="stylesheet" type="text/css">
+    @*<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">*@
+    @* <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">*@
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="~/css/freelancer.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Dashboard</a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"style="font-family:Cairo">
+                الـقـائمة
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family:Cairo">
+                <ul class="navbar-nav ml-auto">
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Policies"style="font-size: small">  التوصيل </a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/PromoCodes"style="font-size: small"> برمـوكـود </a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Categories"style=" font-size: small"> الأقسـام </a>
+                        </li>
+
+
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Offers">الــعروض</a>
+            </li>*@
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Products" style="font-size: small"> الأصـنـاف </a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Sales"style="font-size: small">مبيعات معلقة</a>
+                        </li>
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Sales"style="font-size: small">فواتير ملغية</a>
+                        </li>*@
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Bills"style="font-size:small">فـواتـيـر </a>
+                        </li>
+                       
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Sales"> الـمـبـيـعات </a>
+            </li>*@
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Bills"> الــفواتيــر </a>
+            </li>*@
+
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="~/Registrations"style="font-size:small">الـعـملاء</a>
+                        </li>
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                <a asp-area="Identity" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-page="/Account/Manage/Index" title="Manage">حـســابي</a>
+            </li>*@
+                        <li>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Offers", new { area = "" })">
+                                <button type="submit" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger;btn btn-sm btn-danger d-none d-md-inline-block">تـسـجـيـل الـخروج</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        @*<li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="Identity" asp-page="/Account/Register">تـسـجـيـل الدخــول</a>
+            </li>*@
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="Identity" asp-page="/Account/Login">دخــول</a>
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Location -->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Location</h4>
+                    <p class="lead mb-0">
+                        Alexandria
+                        <br>Mahmood، Hussaini Street، Sidi Beshr Bahri, Montaza 2, Alexandria Governorate
+                    </p>
+                </div>
+
+                <!-- Footer Social Icons -->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-dribbble"></i>
+                    </a>
+                </div>
+
+                <!-- Footer About Text -->
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">About</h4>
+                    <p class="lead mb-0">
+                        Optimo Software
+                        <a href="http://www.optimo-eg.com/">Product</a>.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Section -->
+    <section class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; OPTIMO</small>
+        </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="~/js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="~/js/freelancer.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

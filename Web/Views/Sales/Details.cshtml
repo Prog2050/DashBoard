@@ -1,0 +1,39 @@
+﻿@model Core.Entities.Sales_H
+
+@{
+    ViewData["Title"] = "Details";
+}
+    <div style="margin:160px; padding:120px;">
+        <h1>Details</h1>
+
+        <div>
+            <h4>Sales_H</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Amount)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Amount)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DateTime)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.HD)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.HD)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Order_No">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+      

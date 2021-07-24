@@ -1,0 +1,108 @@
+﻿
+@model ProductViewModels
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+}
+<div style="margin:25px; padding:120px;text-align:center;align-content:center;font-family:Cairo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-5">
+                    <div class="card-header">
+
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h4 style="text-align: center; align-content: center;font-family:Cairo ">
+                                    قــائـمـة الـبـحث بالأصـنـاف
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-lg list-group-flush list my--4">
+
+                            @foreach (var item in Model.Pro)
+                            {
+
+
+
+                                <li class="list-group-item px-0">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                           <img src="~/img/product/@item.ImageUrl" alt="" style="width:100px; height:100px;" loading="lazy">
+                                         
+
+                                            @*<img src="@item.ImageUrl" alt="" class="avatar avatar-lg" style="width:100px; height:100px;" loading="lazy">*@
+
+                                        </div>
+                                        <div class="col ml--6">
+
+                                            <p class="card-text small text-muted mb-1">
+                                                الـصـنـف :   @item.Items
+                                            </p>
+                                            <hr />
+                                            <p class="card-text small text-muted mb-1">
+                                                كــود :   @item.Code
+                                            </p>
+                                            <hr />
+                                            <p class="card-text small text-muted mb-1">
+                                                الـوصـف : @item.Description
+                                            </p>
+                                            <hr />
+
+                                            <p class="card-text small text-muted mb-1">
+                                                السعر :   @item.Price
+                                            </p>
+                                            <hr />
+                                            @*<p class="card-text small text-muted mb-1">
+                                                السعر قبل العرض :   @item.Old_Price
+                                            </p>
+                                            <hr />*@
+                                            <p class="card-text small text-muted mb-1">
+                                                القسم :     @item.Category.Cat
+                                            </p>
+                                            <hr />
+                                            @*<p class="card-text small text-muted mb-1">
+                                                العرض :    @item.Offers.Offer
+                                            </p>
+                                            <hr />*@
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <form asp-action="Edit" asp-route-id="@item.Items_No" method="get">
+                                                <button type="submit" class="btn btn-sm btn-info d-none d-md-inline-block">
+                                                    تـعديـل
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <form asp-action="Details" asp-route-id="@item.Items_No" method="get">
+                                                <button type="submit" class="btn btn-sm btn-warning d-none d-md-inline-block">
+                                                    تـفـاصـيل
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <form asp-action="Delete" asp-route-id="@item.Items_No" method="get">
+                                                <button type="submit" class="btn btn-sm btn-danger d-none d-md-inline-block">
+                                                    حـذف
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

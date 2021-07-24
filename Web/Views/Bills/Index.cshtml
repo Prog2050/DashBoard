@@ -1,0 +1,150 @@
+﻿@model SalesViewModel
+
+@{
+
+    ViewData["Title"] = "Index";
+}
+<body>
+    <div style="margin:25px; padding:120px;text-align:center;align-content:center;font-family:Cairo">
+        <h1 style="font-family:Cairo;margin:25px;padding:25px">فــواتـير الـعـملاء</h1>
+        @if (Model.Sales_Invoices_H.Count < 1)
+        {
+            <h1 style="font-family:Cairo;margin:25px;padding:25px">لا يـوجد طلـبـات جـديدة</h1>
+            return;
+        }
+
+
+        @*<form class="box" asp-action="Search" asp-controller="Bills" method="get" style="margin-top:10px">
+            <row>
+                <input class="form-control mr-sm-2" type="search" placeholder="مـا الـذي تـبـحـث عـنـه من الأصـنـاف" name="term" dir="rtl" style="text-align:center">  <button style="margin:5px;width:150px" class="btn btn-outline-success" type="submit">بـحــث</button>
+
+            </row>
+        </form>*@
+        @foreach (var Header in Model.Sales_Invoices_H)
+        {
+            <div class="card mt-5">
+
+                <div class="card-header">
+
+
+                    <div class="col">
+
+                        <h4 style="text-align: center; align-content: center;font-family:Cairo">
+                            فــاتــورة رقــم @Header.Bills_No
+                        </h4>
+                    </div>
+                </div>
+
+
+                <table class="table table-bordered table-Primary table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                الاجمالي
+                            </th>
+                            <th>
+                                التاريخ
+                            </th>
+                            <th>
+                                خدمة التوصيل
+                            </th>
+                            <th>
+                                العميل
+                            </th>
+                            <th>
+                                العنوان
+                            </th>
+                            <th>
+                                الموبيل
+                            </th>
+                        </tr>
+
+
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.DateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.HD)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.Registration.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.Registration.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Header.Registration.Phone)
+                            </td>
+                            @*<td>
+                                <form asp-action="Done" asp-controller="Sales">
+
+                                    <button class="btn btn-primary" name="id" value="@Header.Order_No">حــفظ الـفـاتورة</button>
+                                    <input type="hidden" name="amount" value="@Header.Amount" class="form-control" />
+                                    <input type="hidden" name="DateTime" value="@Header.DateTime" class="form-control" />
+                                    <input type="hidden" name="userNo" value="@Header.User_No" class="form-control" />
+                                    <input type="hidden" name="HD" value="@Header.HD" class="form-control" />
+                                </form>
+                            </td>*@
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-Secondary table-hover">
+                    <tr>
+                        <td>
+                            الاجمالي
+                        </td>
+                        <td>
+                            الكمية
+                        </td>
+                        <td>
+                            السعر
+                        </td>
+                        <td>
+                            الصنف
+                        </td>
+                    </tr>
+                    <tbody>
+                        @foreach (var Footer in Model.Sales_Invoices_B.Where((ord) => ord.Order_No == Header.Order_No))
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Footer.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Footer.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Footer.Price)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Footer.Items)
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <hr />
+
+
+        }
+    </div>
+</body>
+
